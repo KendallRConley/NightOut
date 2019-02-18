@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Here, thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(MainActivity.this,
                 Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
                         new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
                         MY_PERMISSIONS_REQUEST_COARSE_LOCATION );
 
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // MY_PERMISSIONS_REQUEST_COARSE_LOCATION is an
                 // app-defined int constant. The callback method gets the
                 // result of the request.
         }
