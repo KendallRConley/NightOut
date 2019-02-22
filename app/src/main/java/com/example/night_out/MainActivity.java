@@ -6,14 +6,24 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     public static final int MY_PERMISSIONS_REQUEST_COARSE_LOCATION = 1;
+    private ListView mDrawerList;//the list view
+    private ArrayAdapter<String> mAdapter;//adapts strings to drawer items
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mDrawerList = (ListView)findViewById(R.id.navList);//make the drawer
+        addDrawerItems();//populate the drawer
 
         if (ContextCompat.checkSelfPermission(MainActivity.this,
                 Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -29,6 +39,20 @@ public class MainActivity extends AppCompatActivity {
         else {
             // Permission has already been granted
         }
+    }
+
+    //defines and adds items to the drawer, sets demo listeners
+    private void addDrawerItems() {
+        String[] osArray = {"History", "Destination Options", "Settings"};//str array of items
+        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
+        mDrawerList.setAdapter(mAdapter);
+
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {//adds tap listener
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(MainActivity.this, "Page NYI!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
