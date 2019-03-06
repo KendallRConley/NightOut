@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -38,14 +40,19 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             // Permission has already been granted
-            String loc = getAddress(38.0406, -84.5037);
+            //Gets GPS latitude and longitude location
+            LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            double longitude = location.getLongitude();
+            double latitude = location.getLatitude();
+
+            String loc = getAddress(latitude, longitude);
             address_text = findViewById(R.id.address_text);
             address_text.setText(loc);
         }
     }
 
     //Gets address given lat and long.
-    //TODO dynamically find lat and long from location services. Currently hardcoded to Lexington
     public String getAddress(double lat, double lng){
         String fullAdd=null;
         try {
