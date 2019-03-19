@@ -2,6 +2,7 @@ package com.example.night_out;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -13,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -41,6 +43,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Moves from main activity to food filters activity when button is hit.
+        Button food_btn = findViewById(R.id.foodSelect);
+        food_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, FoodFilters.class));
+            }
+        });
 
         //hamburger drawer code
         mDrawerList = (ListView)findViewById(R.id.navList);//make the drawer
