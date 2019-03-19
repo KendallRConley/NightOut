@@ -70,8 +70,14 @@ public class MainActivity extends AppCompatActivity {
             //Gets GPS latitude and longitude location
             LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
             Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            double longitude = location.getLongitude();
-            double latitude = location.getLatitude();
+            double latitude, longitude;
+            if (location != null) {
+                longitude = location.getLongitude();
+                latitude = location.getLatitude();
+            } else {
+                latitude = 38.0406;
+                longitude = -84.5037;
+            }
 
             String loc = getAddress(latitude, longitude);
             address_text = findViewById(R.id.address_text);

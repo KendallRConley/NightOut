@@ -2,4 +2,9 @@
     <string name="app_name">night_out</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="button_name_food">Food</string>
+    <string name="button_name_drinks">Drinks</string>
+    <string name="button_name_fun">Fun</string>
+    <string name="text_label_none">None</string>
+    <string name="text_label_defaultLocation">DEFAULT: Lexington, KY</string>
 </resources>
