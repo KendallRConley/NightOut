@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupDrawer() {//this activity, drawer's layout, drawable icon, accessibility strings
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
 
-            //alled when a drawer has settled in a completely open state
+            //called when a drawer has settled in a completely open state
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
                 getSupportActionBar().setTitle("Hamburger Drawer");

@@ -23,14 +23,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/drinksSelect"
+            android:id="@+id/drinkSelect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/button_name_drinks"
+            android:text="@string/button_name_drink"
             app:layout_constraintBottom_toTopOf="@+id/funSelect"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/foodSelect" />
@@ -54,6 +54,7 @@
             android:layout_marginLeft="32dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:gravity="center"
             android:text="@string/text_label_none"
             app:layout_constraintBottom_toBottomOf="@+id/foodSelect"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,18 +62,19 @@
             app:layout_constraintTop_toTopOf="@+id/foodSelect" />
 
         <TextView
-            android:id="@+id/drinksChoice"
+            android:id="@+id/drinkChoice"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:gravity="center"
             android:text="@string/text_label_none"
-            app:layout_constraintBottom_toBottomOf="@+id/drinksSelect"
+            app:layout_constraintBottom_toBottomOf="@+id/drinkSelect"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/drinksSelect"
-            app:layout_constraintTop_toTopOf="@+id/drinksSelect" />
+            app:layout_constraintStart_toEndOf="@+id/drinkSelect"
+            app:layout_constraintTop_toTopOf="@+id/drinkSelect" />
 
         <TextView
             android:id="@+id/funChoice"
@@ -82,6 +84,7 @@
             android:layout_marginLeft="32dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:gravity="center"
             android:text="@string/text_label_none"
             app:layout_constraintBottom_toBottomOf="@+id/funSelect"
             app:layout_constraintEnd_toEndOf="parent"

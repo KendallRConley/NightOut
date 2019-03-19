@@ -3,8 +3,23 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="button_name_food">Food</string>
-    <string name="button_name_drinks">Drinks</string>
+    <string name="button_name_drink">Drink</string>
     <string name="button_name_fun">Fun</string>
     <string name="text_label_none">None</string>
     <string name="text_label_defaultLocation">DEFAULT: Lexington, KY</string>
+    <string-array name="food_types_array">
+        <item>Cajun</item>
+        <item>Pizza</item>
+        <item>Diner</item>
+        <item>African</item>
+        <item>Sports Bar</item>
+        <item>American</item>
+        <item>Thai</item>
+        <item>Cuban</item>
+        <item>Korean</item>
+        <item>Japanese</item>
+        <item>Steakhouse</item>
+        <item>Southern</item>
+        <item>Fast Food</item>
+    </string-array>
 </resources>
