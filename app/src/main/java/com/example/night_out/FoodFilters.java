@@ -12,7 +12,7 @@ public class FoodFilters extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_filters);
 
-        Spinner spinner_foodType = (Spinner)findViewById(R.id.spinner_foodType);
+        Spinner spinner_foodType = findViewById(R.id.spinner_foodType);
         //create arrayAdapter from the string resource for a spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.food_types_array, android.R.layout.simple_spinner_item);

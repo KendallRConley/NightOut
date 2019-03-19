@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //hamburger drawer code
-        mDrawerList = (ListView)findViewById(R.id.navList);//make the drawer
-        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);//store the layout
+        mDrawerList = findViewById(R.id.navList);//make the drawer
+        mDrawerLayout = findViewById(R.id.drawer_layout);//store the layout
         mActivityTitle = getTitle().toString();//store the title
 
         addDrawerItems();//populate the drawer
@@ -176,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
                 }
-                return;
             }
 
             // other 'case' lines to check for other
