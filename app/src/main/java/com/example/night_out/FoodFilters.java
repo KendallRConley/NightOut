@@ -1,5 +1,6 @@
 package com.example.night_out;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,15 +15,11 @@ public class FoodFilters extends AppCompatActivity {
     private String costStr = "None";
     private String distStr = "None";
     private String typeStr = "None";
-    //textView in MainActivity to be altered
-    private TextView foodChoice = findViewById(R.id.foodChoice);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_filters);
-
-        assembleFullString();
 
         //buttons in this activity
         Button button_cost1, button_cost2, button_cost3, button_dist1, button_dist2, button_dist3;
@@ -37,42 +34,36 @@ public class FoodFilters extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 costStr = getString(R.string.button_name_cost1);
-                assembleFullString();
             }
         });
         button_cost2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 costStr = getString(R.string.button_name_cost2);
-                assembleFullString();
             }
         });
         button_cost3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 costStr = getString(R.string.button_name_cost3);
-                assembleFullString();
             }
         });
         button_dist1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 distStr = getString(R.string.button_name_dist1);
-                assembleFullString();
             }
         });
         button_dist2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 distStr = getString(R.string.button_name_dist2);
-                assembleFullString();
             }
         });
         button_dist3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 distStr = getString(R.string.button_name_dist3);
-                assembleFullString();
             }
         });
 
@@ -89,20 +80,20 @@ public class FoodFilters extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 typeStr = parent.getItemAtPosition(position).toString();
-                assembleFullString();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 typeStr = "None";
-                assembleFullString();
             }
         });
     }
 
-    //assembles string to be displayed in MainActivity
-    private void assembleFullString() {
-        String fullStr = costStr+" ,"+distStr+" ,"+typeStr;
-        foodChoice.setText(fullStr);
+    @Override
+    protected void onPause() {
+        Intent filtersIntent = new Intent();
+        filtersIntent.putExtra("foodFilters", costStr+", "+distStr+", "+typeStr);
+        setResult(RESULT_OK, filtersIntent);
+        super.onPause();
     }
 }

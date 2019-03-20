@@ -8,6 +8,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -29,8 +30,10 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     public static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 1;
+    public static final int SET_FOOD_FILTERS_REQUEST = 11;
 
     TextView address_text;
+    TextView foodChoice, drinkChoice, funChoice;
 
     //hamburger drawer members
     private ListView mDrawerList;//the list view
@@ -43,12 +46,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //locate textViews on creation
+        foodChoice = findViewById(R.id.foodChoice);
+        drinkChoice = findViewById(R.id.drinkChoice);
+        funChoice = findViewById(R.id.funChoice);
+
         //Moves from main activity to food filters activity when button is hit.
         Button food_btn = findViewById(R.id.foodSelect);
         food_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, FoodFilters.class));
+                startActivityForResult(new Intent(MainActivity.this, FoodFilters.class),
+                        SET_FOOD_FILTERS_REQUEST);//start activity waiting for a result(filters)
             }
         });
 
@@ -93,6 +102,21 @@ public class MainActivity extends AppCompatActivity {
             address_text = findViewById(R.id.address_text);
             address_text.setText(loc);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == SET_FOOD_FILTERS_REQUEST) {
+                String choiceStr = data.getStringExtra("foodFilters");
+                if (choiceStr == null) {
+                    choiceStr = "None, None, None";
+                }
+                foodChoice.setText(choiceStr);
+            }
+        }
+        foodChoice.setText("Weirdness");
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     //Gets address given lat and long.
