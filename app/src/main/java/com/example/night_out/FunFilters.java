@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class DrinkFilters extends AppCompatActivity {
+public class FunFilters extends AppCompatActivity {
     //instance vars to be altered by listeners in onCreate
     private String costStr = "None";
     private String distStr = "None";
@@ -19,7 +19,7 @@ public class DrinkFilters extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drink_filters);
+        setContentView(R.layout.activity_fun_filters);
 
         //buttons in this activity
         Button button_cost1, button_cost2, button_cost3, button_dist1, button_dist2, button_dist3;
@@ -67,16 +67,16 @@ public class DrinkFilters extends AppCompatActivity {
             }
         });
 
-        Spinner spinner_drinkType = findViewById(R.id.spinner_drinkType);
+        Spinner spinner_funType = findViewById(R.id.spinner_funType);
         //create arrayAdapter from the string resource for a spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.drink_types_array, android.R.layout.simple_spinner_item);
+                R.array.fun_types_array, android.R.layout.simple_spinner_item);
         //set the spinner layout in the adapter
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //apply the adapter
-        spinner_drinkType.setAdapter(adapter);
+        spinner_funType.setAdapter(adapter);
         //listener to get type selection
-        spinner_drinkType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner_funType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 typeStr = parent.getItemAtPosition(position).toString();
@@ -92,7 +92,7 @@ public class DrinkFilters extends AppCompatActivity {
     @Override
     protected void onPause() {
         Intent filtersIntent = new Intent();
-        filtersIntent.putExtra("drinkFilters", costStr+", "+distStr+", "+typeStr);
+        filtersIntent.putExtra("funFilters", costStr+", "+distStr+", "+typeStr);
         setResult(RESULT_OK, filtersIntent);
         super.onPause();
     }

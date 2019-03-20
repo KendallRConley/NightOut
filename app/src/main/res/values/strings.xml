@@ -41,4 +41,16 @@
         <item>Restaurant Bar</item>
         <item>Hotel Bar</item>
     </string-array>
+    <string-array name="fun_types_array">
+        <item>Horses</item>
+        <item>Sports</item>
+        <item>Movies</item>
+        <item>Park</item>
+        <item>Distillery Tour</item>
+        <item>Shopping</item>
+        <item>Museum</item>
+        <item>Kids</item>
+        <item>Escape Room</item>
+        <item>Activity</item>
+    </string-array>
 </resources>

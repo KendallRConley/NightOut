@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 1;
     public static final int SET_FOOD_FILTERS_REQUEST = 11;
     public static final int SET_DRINK_FILTERS_REQUEST = 12;
+    public static final int SET_FUN_FILTERS_REQUEST = 13;
 
     TextView address_text;
     TextView foodChoice, drinkChoice, funChoice;
@@ -67,6 +68,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivityForResult(new Intent(MainActivity.this, DrinkFilters.class),
                         SET_DRINK_FILTERS_REQUEST);
+            }
+        });
+        Button fun_btn = findViewById(R.id.funSelect);
+        fun_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(MainActivity.this, FunFilters.class),
+                        SET_FUN_FILTERS_REQUEST);
             }
         });
 
