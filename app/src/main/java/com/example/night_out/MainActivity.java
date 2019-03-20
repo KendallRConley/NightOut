@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
     //hamburger drawer members
     private ListView mDrawerList;//the list view
-    private ArrayAdapter<String> mAdapter;//adapts strings to drawer items
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private String mActivityTitle;
@@ -117,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
     //defines and adds items to the drawer, sets demo listeners
     private void addDrawerItems() {
         String[] osArray = {"Login", "History", "Destination Options", "Settings"};//str array of items
+        ArrayAdapter<String> mAdapter;//adapts strings to drawer items
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         mDrawerList.setAdapter(mAdapter);
 
