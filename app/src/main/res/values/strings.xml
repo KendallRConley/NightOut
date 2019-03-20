@@ -31,4 +31,14 @@
         <item>Southern</item>
         <item>Fast Food</item>
     </string-array>
+    <string-array name="drink_types_array">
+        <item>Bar</item>
+        <item>Brewery</item>
+        <item>Barcade</item>
+        <item>Sports Bar</item>
+        <item>Pub</item>
+        <item>Whiskey</item>
+        <item>Restaurant Bar</item>
+        <item>Hotel Bar</item>
+    </string-array>
 </resources>

@@ -31,6 +31,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     public static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 1;
     public static final int SET_FOOD_FILTERS_REQUEST = 11;
+    public static final int SET_DRINK_FILTERS_REQUEST = 12;
 
     TextView address_text;
     TextView foodChoice, drinkChoice, funChoice;
@@ -51,13 +52,21 @@ public class MainActivity extends AppCompatActivity {
         drinkChoice = findViewById(R.id.drinkChoice);
         funChoice = findViewById(R.id.funChoice);
 
-        //Moves from main activity to food filters activity when button is hit.
+        //listeners to move to each filtering activity
         Button food_btn = findViewById(R.id.foodSelect);
         food_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivityForResult(new Intent(MainActivity.this, FoodFilters.class),
-                        SET_FOOD_FILTERS_REQUEST);//start activity waiting for a result(filters)
+                        SET_FOOD_FILTERS_REQUEST);//expect a result
+            }
+        });
+        Button drink_btn = findViewById(R.id.drinkSelect);
+        drink_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(MainActivity.this, DrinkFilters.class),
+                        SET_DRINK_FILTERS_REQUEST);
             }
         });
 
@@ -107,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
+            //TODO add branches for other filtering options
             if (requestCode == SET_FOOD_FILTERS_REQUEST) {
                 String choiceStr = data.getStringExtra("foodFilters");
                 if (choiceStr == null) {
@@ -115,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
                 foodChoice.setText(choiceStr);
             }
         }
-        foodChoice.setText("Weirdness");
         super.onActivityResult(requestCode, resultCode, data);
     }
 
