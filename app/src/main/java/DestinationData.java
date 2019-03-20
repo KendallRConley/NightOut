@@ -1,3 +1,4 @@
+/*
 public class DestinationData {
     void int main(){
 
@@ -42,7 +43,7 @@ public class DestinationData {
                 {Drink, Henry Clays Public House,	Whiskey,		112 N Upper St Lexington KY 40507},
                 {Drink, Paddock Bar,				Bar,			319 S Limestone # B Lexington KY 40508},
                 {Drink, Shamrock Bar & Grille,		Pub,			4750 Hartland Pkwy #128 Lexington KY 40515},
-                {Drink, Hop Cat,					Resurant/Bar,	410 W Short St Lexington KY 40507},
+                {Drink, Hop Cat,					Restaurant/Bar,	410 W Short St Lexington KY 40507},
                 {Drink,	Bigg Blue Martini,			Hotel Bar,		369 W Vine St Lexington KY 40507},
 
 
@@ -69,3 +70,4 @@ public class DestinationData {
 
      }
 }
+*/
