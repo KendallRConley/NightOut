@@ -12,14 +12,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FunFilters"
-            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".pageResult"></activity>
+        <activity
+            android:name=".FunFilters"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".DrinkFilters"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".FoodFilters"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
