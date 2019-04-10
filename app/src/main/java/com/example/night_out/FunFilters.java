@@ -9,20 +9,23 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import java.util.Random;
+
 public class FunFilters extends AppCompatActivity {
     //instance vars to be altered by listeners in onCreate
     private String costStr = "All";
     private String distStr = "All";
     private String typeStr = "All";
-
+    public String[] funTypes = {"karaoke", "danceclubs", "poolhalls", "comedyclubs", "amusementparks",
+                                "bowling", "climbing", "discgolf", "escapegames", "gokarts"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fun_filters);
-
+        Random rand = new Random();
         //buttons in this activity
         Button button_cost1, button_cost2, button_cost3, button_dist1, button_dist2, button_dist3,
-                button_apply;
+                button_apply,button_choice1, button_choice2, button_random;
         button_cost1 = findViewById(R.id.button_cost1);
         button_cost2 = findViewById(R.id.button_cost2);
         button_cost3 = findViewById(R.id.button_cost3);
@@ -30,6 +33,10 @@ public class FunFilters extends AppCompatActivity {
         button_dist2 = findViewById(R.id.button_dist2);
         button_dist3 = findViewById(R.id.button_dist3);
         button_apply = findViewById(R.id.button_apply);
+        button_choice1 = findViewById(R.id.choice1);
+        button_choice2 = findViewById(R.id.choice2);
+        button_random = findViewById(R.id.random);
+        randomizeButtons(rand, button_choice1, button_choice2);
         //button listeners to change textViews in MainActivity
         button_cost1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,38 +83,32 @@ public class FunFilters extends AppCompatActivity {
                 finish();
             }
         });
-
-        /*TODO on yelp merge:
-        JSONObject jsonObject = new JSONObject(getIntent().getStringExtra("jsonObject"));
-        ArrayList<String> categoriesList = new ArrayList(0);
-        for (each categoryString in JSONObject) {//may need to be a few nested fors to get to the right level
-            categoriesList.add(categoryString);
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String> (this,
-                android.R.layout.simple_spinner_dropdown_item, categoriesList);
-        TODO: then delete the two lines before spinner.setAdapter(adapter) below this
-         */
-
-        Spinner spinner_funType = findViewById(R.id.spinner_funType);
-        //create arrayAdapter from the string resource for a spinner
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.fun_types_array, android.R.layout.simple_spinner_item);
-        //set the spinner layout in the adapter
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //apply the adapter
-        spinner_funType.setAdapter(adapter);
-        //listener to get type selection
-        spinner_funType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        button_choice1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                typeStr = parent.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                typeStr = "All";
+            public void onClick(View v) {
+                typeStr = button_choice1.getText().toString();
             }
         });
+        button_choice2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                typeStr = button_choice2.getText().toString();
+            }
+        });
+        button_random.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                randomizeButtons(rand, button_choice1, button_choice2);
+            }
+        });
+    }
+
+    private void randomizeButtons(Random rand, Button button_choice1, Button button_choice2) {
+        int objNum1 = rand.nextInt(funTypes.length);
+        int objNum2 = rand.nextInt(funTypes.length);
+        while (objNum1 == objNum2) {objNum2 = rand.nextInt(funTypes.length);}
+        button_choice1.setText(funTypes[objNum1]);
+        button_choice2.setText(funTypes[objNum2]);
     }
 
     @Override

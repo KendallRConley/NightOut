@@ -16,42 +16,7 @@
     <string name="button_name_cost2">$$</string>
     <string name="button_name_cost3">$$$</string>
     <string name="text_label_dist">Distance</string>
-    <string name="wait_for_async">Loading...</string>
+    <string name="wait_for_async">Loading…</string>
     <string name="button_name_apply">Apply</string>
-    <string-array name="food_types_array">
-        <item>seafood</item>
-        <item>tradamerican</item>
-        <item>breakfast_brunch</item>
-        <item>burgers</item>
-        <item>cajun</item>
-        <item>chicken_wings</item>
-        <item>chinese</item>
-        <item>french</item>
-        <item>german</item>
-        <item>italian</item>
-        <item>japanese</item>
-        <item>korean</item>
-    </string-array>
-    <string-array name="drink_types_array">
-        <item>Bar</item>
-        <item>Brewery</item>
-        <item>Barcade</item>
-        <item>Sports Bar</item>
-        <item>Pub</item>
-        <item>Whiskey</item>
-        <item>Restaurant Bar</item>
-        <item>Hotel Bar</item>
-    </string-array>
-    <string-array name="fun_types_array">
-        <item>Horses</item>
-        <item>Sports</item>
-        <item>Movies</item>
-        <item>Park</item>
-        <item>Distillery Tour</item>
-        <item>Shopping</item>
-        <item>Museum</item>
-        <item>Kids</item>
-        <item>Escape Room</item>
-        <item>Activity</item>
-    </string-array>
+    <string name="button_randomize">Randomize</string>
 </resources>

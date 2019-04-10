@@ -41,11 +41,11 @@ public class pageResult extends AppCompatActivity {
                     price = "1,2,3";
                     break;
             }
-            switch (choices[1]){
-                case " Close":
+            switch (choices[1].substring(1)){
+                case "Close":
                     radius = 8050; //about 5 miles
                     break;
-                case " Mid":
+                case "Mid":
                     radius = 25000; //about 15 miles
                     break;
                 default:
