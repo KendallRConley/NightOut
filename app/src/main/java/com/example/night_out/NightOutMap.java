@@ -31,8 +31,8 @@ public class NightOutMap extends FragmentActivity implements OnMapReadyCallback 
         double usr_long = getLocation.getDouble("lonString");
         // Add a marker for the user's choice and move the camera
         LatLng usr_choice = new LatLng(usr_lat, usr_long);
-        mMap.addMarker(new MarkerOptions().position(new LatLng(usr_lat,usr_long)).title(""));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(usr_choice));
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(usr_lat,usr_long)).title("Marker"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(usr_choice));
     }
 
     /*
