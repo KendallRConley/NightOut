@@ -47,21 +47,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        double latitude = 0, longitude=0;
         //locate textViews on creation
         foodChoice = findViewById(R.id.foodChoice);
         drinkChoice = findViewById(R.id.drinkChoice);
         funChoice = findViewById(R.id.funChoice);
 
         //listeners to move to each filtering activity
-        Button yelp_btn = findViewById(R.id.yelpSelect);
-        yelp_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(new Intent(MainActivity.this, pageResult.class),
-                        SET_PAGE_RESULT_REQUEST);//expect a result
-            }
-        });
         Button food_btn = findViewById(R.id.foodSelect);
         food_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
             //Gets GPS latitude and longitude location
             LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
             Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            double latitude, longitude;
             if (location != null) {
                 longitude = location.getLongitude();
                 latitude = location.getLatitude();
@@ -149,6 +140,23 @@ public class MainActivity extends AppCompatActivity {
             address_text = findViewById(R.id.address_text);
             address_text.setText(loc);
         }
+        Button yelp_btn = findViewById(R.id.yelpSelect);
+        double finalLatitude = latitude;
+        double finalLongitude = longitude;
+        yelp_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, pageResult.class);
+                Bundle b = new Bundle();
+                b.putString("foodChoice", foodChoice.getText().toString());
+                b.putString("drinkChoice", drinkChoice.getText().toString());
+                b.putString("funChoice", funChoice.getText().toString());
+                b.putDouble("lat", finalLatitude);
+                b.putDouble("long", finalLongitude);
+                intent.putExtras(b); //Put your id to your next Intent
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
