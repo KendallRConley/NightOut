@@ -27,8 +27,8 @@ public class NightOutMap extends FragmentActivity implements OnMapReadyCallback 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Bundle getLocation = getIntent().getExtras();
-        double usr_lat = getLocation.getDouble("lat");
-        double usr_long = getLocation.getDouble("lon") ;
+        double usr_lat = getLocation.getDouble("latString");
+        double usr_long = getLocation.getDouble("lonString");
         // Add a marker for the user's choice and move the camera
         LatLng usr_choice = new LatLng(usr_lat, usr_long);
         mMap.addMarker(new MarkerOptions().position(new LatLng(usr_lat,usr_long)).title(""));
