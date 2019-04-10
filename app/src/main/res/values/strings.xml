@@ -16,6 +16,7 @@
     <string name="button_name_cost2">$$</string>
     <string name="button_name_cost3">$$$</string>
     <string name="text_label_dist">Distance</string>
+    <string name="wait_for_async">Loading...</string>
     <string-array name="food_types_array">
         <item>Cajun</item>
         <item>Pizza</item>
