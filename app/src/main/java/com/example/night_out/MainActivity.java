@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int SET_FOOD_FILTERS_REQUEST = 11;
     public static final int SET_DRINK_FILTERS_REQUEST = 12;
     public static final int SET_FUN_FILTERS_REQUEST = 13;
+    public static final int SET_PAGE_RESULT_REQUEST = 14;
 
     TextView address_text;
     TextView foodChoice, drinkChoice, funChoice;
@@ -53,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
         funChoice = findViewById(R.id.funChoice);
 
         //listeners to move to each filtering activity
+        Button yelp_btn = findViewById(R.id.yelpSelect);
+        yelp_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(MainActivity.this, pageResult.class),
+                        SET_PAGE_RESULT_REQUEST);//expect a result
+            }
+        });
         Button food_btn = findViewById(R.id.foodSelect);
         food_btn.setOnClickListener(new View.OnClickListener() {
             @Override
