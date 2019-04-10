@@ -58,13 +58,6 @@ public class MainActivity extends AppCompatActivity {
         food_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*TODO on yelp api merge:
-                TODO Replace line after this block comment with
-                Intent foodIntent = new Intent(MainActivity.this, FoodFilters.class);
-                foodIndent.putExtra("jsonObject", JSONObject.tostring()); //name of json object here
-                startActivityForResult(foodIntent, SET_FOOD_FILTERS_REQUEST);
-                 */
-
                 startActivityForResult(new Intent(MainActivity.this, FoodFilters.class),
                         SET_FOOD_FILTERS_REQUEST);//expect a result
             }
@@ -73,13 +66,6 @@ public class MainActivity extends AppCompatActivity {
         drink_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*TODO on yelp api merge:
-                TODO Replace line after this block comment with
-                Intent foodIntent = new Intent(MainActivity.this, DrinkFilters.class);
-                foodIndent.putExtra("jsonObject", JSONObject.tostring()); //name of json object here
-                startActivityForResult(foodIntent, SET_DRINK_FILTERS_REQUEST);
-                 */
-
                 startActivityForResult(new Intent(MainActivity.this, DrinkFilters.class),
                         SET_DRINK_FILTERS_REQUEST);
             }
@@ -88,13 +74,6 @@ public class MainActivity extends AppCompatActivity {
         fun_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*TODO on yelp api merge:
-                TODO Replace line after this block comment with
-                Intent foodIntent = new Intent(MainActivity.this, FunFilters.class);
-                foodIndent.putExtra("jsonObject", JSONObject.tostring()); //name of json object here
-                startActivityForResult(foodIntent, SET_FUN_FILTERS_REQUEST);
-                 */
-
                 startActivityForResult(new Intent(MainActivity.this, FunFilters.class),
                         SET_FUN_FILTERS_REQUEST);
             }

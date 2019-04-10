@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Random;
 
 import okhttp3.*;
@@ -19,38 +20,16 @@ public class pageResult extends AppCompatActivity {
         setContentView(R.layout.activity_page_result);
 
         Bundle b = getIntent().getExtras();
-        if(b!= null) {
+        if(b!= null && (!Objects.requireNonNull(b.getString("foodChoice")).equals(""))) {
             double lat = b.getDouble("lat");
             double lon = b.getDouble("long");
             String foodChoices = b.getString("foodChoice");
             String[] choices = foodChoices.split(",");
-            String price;
-            int radius;
+
+            String price = getPriceString(choices[0]);
+            int radius = getDistance(choices[1].substring(1));
             String term = choices[2].substring(1);
-            switch (choices[0]) {
-                case "$":
-                    price = "1";
-                    break;
-                case "$$":
-                    price = "2";
-                    break;
-                case "$$$":
-                    price = "3";
-                    break;
-                default:
-                    price = "1,2,3";
-                    break;
-            }
-            switch (choices[1].substring(1)){
-                case "Close":
-                    radius = 8050; //about 5 miles
-                    break;
-                case "Mid":
-                    radius = 25000; //about 15 miles
-                    break;
-                default:
-                    radius = 40000; //about 25 miles. Yelp's max radius
-            }
+
             Request request = new Request.Builder()
                     .url("https://api.yelp.com/v3/businesses/search?categories="+term+"&price="+price+"&latitude="+lat+"&longitude="+lon+"&radius="+radius)
                     .get()
@@ -61,6 +40,43 @@ public class pageResult extends AppCompatActivity {
                     .build();
             new downloadHandler().execute(request);
         }
+        else{
+            finish();
+        }
+    }
+
+    public String getPriceString(String price){
+        String yelp_price;
+        switch (price) {
+            case "$":
+                yelp_price = "1";
+                break;
+            case "$$":
+                yelp_price = "2";
+                break;
+            case "$$$":
+                yelp_price = "3";
+                break;
+            default:
+                yelp_price = "1,2,3";
+                break;
+        }
+        return yelp_price;
+    }
+
+    public int getDistance(String dist){
+        int distance;
+        switch (dist){
+            case "Close":
+                distance = 8050; //about 5 miles
+                break;
+            case "Mid":
+                distance = 25000; //about 15 miles
+                break;
+            default:
+                distance = 40000; //about 25 miles. Yelp's max radius
+        }
+        return distance;
     }
 
     private class downloadHandler extends AsyncTask<Request, JSONObject, JSONObject> {
