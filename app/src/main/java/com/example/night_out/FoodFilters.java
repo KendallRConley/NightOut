@@ -78,6 +78,7 @@ public class FoodFilters extends AppCompatActivity {
         });
         Spinner spinner_foodType = findViewById(R.id.spinner_foodType);
         //create arrayAdapter from the string resource for a spinner
+        //TODO on yelp api implementation, change to a new ArrayAdapter<String> w/ ArrayList>String> arg
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.food_types_array, android.R.layout.simple_spinner_item);
         //set the spinner layout in the adapter
