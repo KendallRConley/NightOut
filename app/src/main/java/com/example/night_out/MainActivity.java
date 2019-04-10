@@ -66,6 +66,13 @@ public class MainActivity extends AppCompatActivity {
         food_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*TODO on yelp api merge:
+                TODO Replace line after this block comment with
+                Intent foodIntent = new Intent(MainActivity.this, FoodFilters.class);
+                foodIndent.putExtra("jsonObject", JSONObject.tostring()); //name of json object here
+                startActivityForResult(foodIntent, SET_FOOD_FILTERS_REQUEST);
+                 */
+
                 startActivityForResult(new Intent(MainActivity.this, FoodFilters.class),
                         SET_FOOD_FILTERS_REQUEST);//expect a result
             }
@@ -74,6 +81,13 @@ public class MainActivity extends AppCompatActivity {
         drink_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*TODO on yelp api merge:
+                TODO Replace line after this block comment with
+                Intent foodIntent = new Intent(MainActivity.this, DrinkFilters.class);
+                foodIndent.putExtra("jsonObject", JSONObject.tostring()); //name of json object here
+                startActivityForResult(foodIntent, SET_DRINK_FILTERS_REQUEST);
+                 */
+
                 startActivityForResult(new Intent(MainActivity.this, DrinkFilters.class),
                         SET_DRINK_FILTERS_REQUEST);
             }
@@ -82,6 +96,13 @@ public class MainActivity extends AppCompatActivity {
         fun_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*TODO on yelp api merge:
+                TODO Replace line after this block comment with
+                Intent foodIntent = new Intent(MainActivity.this, FunFilters.class);
+                foodIndent.putExtra("jsonObject", JSONObject.tostring()); //name of json object here
+                startActivityForResult(foodIntent, SET_FUN_FILTERS_REQUEST);
+                 */
+
                 startActivityForResult(new Intent(MainActivity.this, FunFilters.class),
                         SET_FUN_FILTERS_REQUEST);
             }
@@ -132,17 +153,29 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            //TODO add branches for other filtering options
-            if (requestCode == SET_FOOD_FILTERS_REQUEST) {
-                String choiceStr = data.getStringExtra("foodFilters");
-                if (choiceStr == null) {
-                    choiceStr = "None, None, None";
-                }
-                foodChoice.setText(choiceStr);
-            }
-        }
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SET_FOOD_FILTERS_REQUEST) {
+            String choiceStr = data.getStringExtra("foodFilters");
+            if (choiceStr == null || resultCode != RESULT_OK) {
+                choiceStr = "No food filters set!";
+            }
+            foodChoice.setText(choiceStr);
+        }
+        if (requestCode == SET_DRINK_FILTERS_REQUEST) {
+            String choiceStr = data.getStringExtra("drinkFilters");
+            if (choiceStr == null || resultCode != RESULT_OK) {
+                choiceStr = "No drink filters set!";
+            }
+            drinkChoice.setText(choiceStr);
+        }
+        if (requestCode == SET_FUN_FILTERS_REQUEST) {
+            String choiceStr = data.getStringExtra("funFilters");
+            if (choiceStr == null || resultCode != RESULT_OK) {
+                choiceStr = "No fun filters set!";
+            }
+            funChoice.setText(choiceStr);
+        }
+
     }
 
     //Gets address given lat and long.

@@ -11,9 +11,9 @@ import android.widget.Spinner;
 
 public class DrinkFilters extends AppCompatActivity {
     //instance vars to be altered by listeners in onCreate
-    private String costStr = "None";
-    private String distStr = "None";
-    private String typeStr = "None";
+    private String costStr = "All";
+    private String distStr = "All";
+    private String typeStr = "All";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,13 +21,15 @@ public class DrinkFilters extends AppCompatActivity {
         setContentView(R.layout.activity_drink_filters);
 
         //buttons in this activity
-        Button button_cost1, button_cost2, button_cost3, button_dist1, button_dist2, button_dist3;
+        Button button_cost1, button_cost2, button_cost3, button_dist1, button_dist2, button_dist3,
+                button_apply;
         button_cost1 = findViewById(R.id.button_cost1);
         button_cost2 = findViewById(R.id.button_cost2);
         button_cost3 = findViewById(R.id.button_cost3);
         button_dist1 = findViewById(R.id.button_dist1);
         button_dist2 = findViewById(R.id.button_dist2);
         button_dist3 = findViewById(R.id.button_dist3);
+        button_apply = findViewById(R.id.button_apply);
         //button listeners to change textViews in MainActivity
         button_cost1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +67,26 @@ public class DrinkFilters extends AppCompatActivity {
                 distStr = getString(R.string.button_name_dist3);
             }
         });
+        button_apply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent filtersIntent = new Intent();
+                filtersIntent.putExtra("drinkFilters", costStr+", "+distStr+", "+typeStr);
+                setResult(RESULT_OK, filtersIntent);
+                finish();
+            }
+        });
+
+        /*TODO on yelp merge:
+        JSONObject jsonObject = new JSONObject(getIntent().getStringExtra("jsonObject"));
+        ArrayList<String> categoriesList = new ArrayList(0);
+        for (each categoryString in JSONObject) {//may need to be a few nested fors to get to the right level
+            categoriesList.add(categoryString);
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String> (this,
+                android.R.layout.simple_spinner_dropdown_item, categoriesList);
+        TODO: then delete the two lines before spinner.setAdapter(adapter) below this
+         */
 
         Spinner spinner_drinkType = findViewById(R.id.spinner_drinkType);
         //create arrayAdapter from the string resource for a spinner
@@ -83,16 +105,16 @@ public class DrinkFilters extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                typeStr = "None";
+                typeStr = "All";
             }
         });
     }
 
     @Override
-    protected void onPause() {
+    public void onBackPressed() {
         Intent filtersIntent = new Intent();
         filtersIntent.putExtra("drinkFilters", costStr+", "+distStr+", "+typeStr);
         setResult(RESULT_OK, filtersIntent);
-        super.onPause();
+        finish();
     }
 }
