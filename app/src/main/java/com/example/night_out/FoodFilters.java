@@ -11,9 +11,9 @@ import android.widget.Spinner;
 
 public class FoodFilters extends AppCompatActivity {
     //instance vars to be altered by listeners in onCreate
-    private String costStr = "None";
-    private String distStr = "None";
-    private String typeStr = "None";
+    private String costStr = "All";
+    private String distStr = "All";
+    private String typeStr = "All";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,13 +21,15 @@ public class FoodFilters extends AppCompatActivity {
         setContentView(R.layout.activity_food_filters);
 
         //buttons in this activity
-        Button button_cost1, button_cost2, button_cost3, button_dist1, button_dist2, button_dist3;
+        Button button_cost1, button_cost2, button_cost3, button_dist1, button_dist2, button_dist3,
+                button_apply;
         button_cost1 = findViewById(R.id.button_cost1);
         button_cost2 = findViewById(R.id.button_cost2);
         button_cost3 = findViewById(R.id.button_cost3);
         button_dist1 = findViewById(R.id.button_dist1);
         button_dist2 = findViewById(R.id.button_dist2);
         button_dist3 = findViewById(R.id.button_dist3);
+        button_apply = findViewById(R.id.button_apply);
         //button listeners to change textViews in MainActivity
         button_cost1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +67,15 @@ public class FoodFilters extends AppCompatActivity {
                 distStr = getString(R.string.button_name_dist3);
             }
         });
-
+        button_apply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent filtersIntent = new Intent();
+                filtersIntent.putExtra("foodFilters", costStr+", "+distStr+", "+typeStr);
+                setResult(RESULT_OK, filtersIntent);
+                finish();
+            }
+        });
         Spinner spinner_foodType = findViewById(R.id.spinner_foodType);
         //create arrayAdapter from the string resource for a spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -83,16 +93,16 @@ public class FoodFilters extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                typeStr = "None";
+                typeStr = "All";
             }
         });
     }
 
     @Override
-    protected void onPause() {
+    public void onBackPressed() {
         Intent filtersIntent = new Intent();
         filtersIntent.putExtra("foodFilters", costStr+", "+distStr+", "+typeStr);
         setResult(RESULT_OK, filtersIntent);
-        super.onPause();
+        finish();
     }
 }

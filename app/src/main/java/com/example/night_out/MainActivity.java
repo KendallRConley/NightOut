@@ -123,17 +123,29 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            //TODO add branches for other filtering options
-            if (requestCode == SET_FOOD_FILTERS_REQUEST) {
-                String choiceStr = data.getStringExtra("foodFilters");
-                if (choiceStr == null) {
-                    choiceStr = "None, None, None";
-                }
-                foodChoice.setText(choiceStr);
-            }
-        }
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SET_FOOD_FILTERS_REQUEST) {
+            String choiceStr = data.getStringExtra("foodFilters");
+            if (choiceStr == null || resultCode != RESULT_OK) {
+                choiceStr = "No food filters set!";
+            }
+            foodChoice.setText(choiceStr);
+        }
+        if (requestCode == SET_DRINK_FILTERS_REQUEST) {
+            String choiceStr = data.getStringExtra("drinkFilters");
+            if (choiceStr == null || resultCode != RESULT_OK) {
+                choiceStr = "No drink filters set!";
+            }
+            drinkChoice.setText(choiceStr);
+        }
+        if (requestCode == SET_FUN_FILTERS_REQUEST) {
+            String choiceStr = data.getStringExtra("funFilters");
+            if (choiceStr == null || resultCode != RESULT_OK) {
+                choiceStr = "No fun filters set!";
+            }
+            funChoice.setText(choiceStr);
+        }
+
     }
 
     //Gets address given lat and long.
