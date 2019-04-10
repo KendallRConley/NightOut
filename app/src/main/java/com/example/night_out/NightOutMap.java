@@ -23,29 +23,20 @@ public class NightOutMap extends FragmentActivity implements OnMapReadyCallback 
         mapFragment.getMapAsync(this);
     }
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
         //LatLng usr_choice = new LatLng(location.getLat(),location.getLong());
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0,0)).title("Marker"));
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
-    /**
+    /*
      * A demo class that stores and retrieves data objects with each marker.
      */
+}
+/*
     public class MarkerDemoActivity extends FragmentActivity implements
             OnMarkerClickListener,
             OnMapReadyCallback {
@@ -64,14 +55,16 @@ public class NightOutMap extends FragmentActivity implements OnMapReadyCallback 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.marker_demo);
+            setContentView(R.layout.activity_night_out_map.xml);
 
             SupportMapFragment mapFragment =
                     (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
         }
 
-        /** Called when the map is ready. */
+        */
+/* Called when the map is ready. *//*
+
         @Override
         public void onMapReady(GoogleMap map) {
             mMap = map;
@@ -96,7 +89,9 @@ public class NightOutMap extends FragmentActivity implements OnMapReadyCallback 
             mMap.setOnMarkerClickListener(this);
         }
 
-        /** Called when the user clicks a marker. */
+        */
+/* Called when the user clicks a marker. *//*
+
         @Override
         public boolean onMarkerClick(final Marker marker) {
 
@@ -119,4 +114,5 @@ public class NightOutMap extends FragmentActivity implements OnMapReadyCallback 
             return false;
         }
     }
-}
+*/
+
