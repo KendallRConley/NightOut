@@ -76,6 +76,18 @@ public class DrinkFilters extends AppCompatActivity {
                 finish();
             }
         });
+
+        /*TODO on yelp merge:
+        JSONObject jsonObject = new JSONObject(getIntent().getStringExtra("jsonObject"));
+        ArrayList<String> categoriesList = new ArrayList(0);
+        for (each categoryString in JSONObject) {//may need to be a few nested fors to get to the right level
+            categoriesList.add(categoryString);
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String> (this,
+                android.R.layout.simple_spinner_dropdown_item, categoriesList);
+        TODO: then delete the two lines before spinner.setAdapter(adapter) below this
+         */
+
         Spinner spinner_drinkType = findViewById(R.id.spinner_drinkType);
         //create arrayAdapter from the string resource for a spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
