@@ -1,5 +1,6 @@
 package com.example.night_out;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -25,11 +26,13 @@ public class NightOutMap extends FragmentActivity implements OnMapReadyCallback 
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
-        // Add a marker in Sydney and move the camera
-        //LatLng usr_choice = new LatLng(location.getLat(),location.getLong());
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        Bundle getLocation = getIntent().getExtras();
+        double usr_lat = getLocation.getDouble("lat");
+        double usr_long = getLocation.getDouble("lon") ;
+        // Add a marker for the user's choice and move the camera
+        LatLng usr_choice = new LatLng(usr_lat, usr_long);
+        mMap.addMarker(new MarkerOptions().position(new LatLng(usr_lat,usr_long)).title(""));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(usr_choice));
     }
 
     /*
@@ -62,9 +65,8 @@ public class NightOutMap extends FragmentActivity implements OnMapReadyCallback 
             mapFragment.getMapAsync(this);
         }
 
-        */
-/* Called when the map is ready. *//*
-
+/* Called when the map is ready. */
+/*
         @Override
         public void onMapReady(GoogleMap map) {
             mMap = map;
@@ -88,9 +90,8 @@ public class NightOutMap extends FragmentActivity implements OnMapReadyCallback 
             // Set a listener for marker click.
             mMap.setOnMarkerClickListener(this);
         }
-
-        */
-/* Called when the user clicks a marker. *//*
+*/
+/*
 
         @Override
         public boolean onMarkerClick(final Marker marker) {
@@ -115,4 +116,5 @@ public class NightOutMap extends FragmentActivity implements OnMapReadyCallback 
         }
     }
 */
+/*Called when the user clicks a marker. */
 
