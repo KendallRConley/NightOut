@@ -17,7 +17,8 @@ public class FunFilters extends AppCompatActivity {
     private String distStr = "All";
     private String typeStr = "All";
     public String[] funTypes = {"karaoke", "danceclubs", "poolhalls", "comedyclubs", "amusementparks",
-                                "bowling", "climbing", "discgolf", "escapegames", "gokarts"};
+                                "bowling", "climbing", "discgolf", "escapegames", "gokarts", "lasertag",
+                                "parks", "casinos", "cabaret", "movietheaters", "arcades"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
