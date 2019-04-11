@@ -18,8 +18,7 @@ public class DrinkFilters extends AppCompatActivity {
     private String typeStr = "All";
     public String[] drinkTypes = {"bars", "cocktailbars", "hookah_bars", "sportsbars", "wine_bars",
                                   "pianobars", "cigarbars", "divebars", "irish_pubs", "beerbar",
-                                  "adultentertainment", "barcrawl", "lounges", "whiskeybars",
-                                  "bars", "gaybars"};
+                                  "barcrawl", "lounges", "whiskeybars", "bars"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
