@@ -16,7 +16,7 @@
     <string name="button_name_cost2">$$</string>
     <string name="button_name_cost3">$$$</string>
     <string name="text_label_dist">Distance</string>
-    <string name="wait_for_async">Loading…</string>
+    <string name="wait_for_async">Loading</string>
     <string name="button_name_apply">Apply</string>
     <string name="button_randomize">Randomize</string>
 </resources>

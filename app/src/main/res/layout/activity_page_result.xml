@@ -7,7 +7,7 @@
     tools:context=".pageResult">
 
     <TextView
-        android:id="@+id/yelpName"
+        android:id="@+id/onename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.482" />
 
     <TextView
-        android:id="@+id/yelpAdd"
+        android:id="@+id/twoname"
         android:layout_width="wrap_content"
         android:layout_height="15dp"
         android:layout_marginStart="8dp"
@@ -38,11 +38,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/yelpName"
+        app:layout_constraintTop_toBottomOf="@+id/onename"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/yelpPhone"
+        android:id="@+id/threename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -56,24 +56,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/yelpAdd"
+        app:layout_constraintTop_toBottomOf="@+id/twoname"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/yelpURL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/wait_for_async"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/yelpPhone"
-        app:layout_constraintVertical_bias="0.0" />
 </android.support.constraint.ConstraintLayout>
