@@ -1,6 +1,7 @@
 package com.example.night_out;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -42,12 +43,13 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private String mActivityTitle;
+    public double latitude;
+    public double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        double latitude = 0, longitude=0;
         //locate textViews on creation
         foodChoice = findViewById(R.id.foodChoice);
         drinkChoice = findViewById(R.id.drinkChoice);
@@ -105,19 +107,7 @@ public class MainActivity extends AppCompatActivity {
         else {
             // Permission has already been granted
             //Gets GPS latitude and longitude location
-            LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if (location != null) {
-                longitude = location.getLongitude();
-                latitude = location.getLatitude();
-            } else {
-                latitude = 38.0406;
-                longitude = -84.5037;
-            }
-
-            String loc = getAddress(latitude, longitude);
-            address_text = findViewById(R.id.address_text);
-            address_text.setText(loc);
+            getLatLong();
         }
         Button yelp_btn = findViewById(R.id.yelpSelect);
         double finalLatitude = latitude;
@@ -136,6 +126,22 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void getLatLong() {
+        LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        @SuppressLint("MissingPermission") Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (location != null) {
+            longitude = location.getLongitude();
+            latitude = location.getLatitude();
+        } else {
+            latitude = 38.0406;
+            longitude = -84.5037;
+        }
+
+        String loc = getAddress(latitude, longitude);
+        address_text = findViewById(R.id.address_text);
+        address_text.setText(loc);
     }
 
     @Override
@@ -240,11 +246,11 @@ public class MainActivity extends AppCompatActivity {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission was granted, yay! Do the
-                    // location-related task you need to do
+                    getLatLong();
                 } else {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
+                    Toast.makeText(MainActivity.this, "Location usage required", Toast.LENGTH_SHORT).show();
                 }
             }
 
