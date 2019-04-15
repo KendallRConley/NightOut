@@ -53,7 +53,7 @@ public class pageResult extends AppCompatActivity {
         int radius = getDistance(choices[1].substring(1));
         String term = choices[2].substring(1);
 
-        Request request = new Request.Builder()
+        return new Request.Builder()
                 .url("https://api.yelp.com/v3/businesses/search?categories=" + term + "&price=" + price + "&latitude=" + lat + "&longitude=" + lon + "&radius=" + radius)
                 .get()
                 .addHeader("Authorization", "Bearer C7UvUlP5eSCdaKyC0T5mjE8EXnhPm4lu_lGFDFAI_vzIzUkNNbqyl6pnaZMYFcU4p2E-93JFKP20URmNfBbc12sKJ-lugBGY6FxyCRFUFjMuBFmc9n3gHCdYq4KSXHYx")
@@ -61,7 +61,6 @@ public class pageResult extends AppCompatActivity {
                 .addHeader("cache-control", "no-cache")
                 .addHeader("Postman-Token", "fb69fb24-4846-4a93-9e4e-1199fa4693ff")
                 .build();
-        return request;
     }
 
     public String getPriceString(String price){
@@ -105,6 +104,7 @@ public class pageResult extends AppCompatActivity {
         protected JSONObject doInBackground(Request... requests) {
             try {
                 Response response = client.newCall(requests[0]).execute();
+                assert response.body() != null;
                 JSONObject jsonObject = new JSONObject(response.body().string().trim());       // parser
                 JSONArray myResponse = (JSONArray)jsonObject.get("businesses");
                 Random rand = new Random();

@@ -9,6 +9,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -21,6 +22,8 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     public static final int SET_FOOD_FILTERS_REQUEST = 11;
     public static final int SET_DRINK_FILTERS_REQUEST = 12;
     public static final int SET_FUN_FILTERS_REQUEST = 13;
-    public static final int SET_PAGE_RESULT_REQUEST = 14;
 
     TextView address_text;
     TextView foodChoice, drinkChoice, funChoice;
@@ -57,29 +59,16 @@ public class MainActivity extends AppCompatActivity {
 
         //listeners to move to each filtering activity
         Button food_btn = findViewById(R.id.foodSelect);
-        food_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(new Intent(MainActivity.this, FoodFilters.class),
-                        SET_FOOD_FILTERS_REQUEST);//expect a result
-            }
+        food_btn.setOnClickListener(v -> {
+            startActivityForResult(new Intent(MainActivity.this, FoodFilters.class),
+                    SET_FOOD_FILTERS_REQUEST);//expect a result
         });
         Button drink_btn = findViewById(R.id.drinkSelect);
-        drink_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(new Intent(MainActivity.this, DrinkFilters.class),
-                        SET_DRINK_FILTERS_REQUEST);
-            }
-        });
+        drink_btn.setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, DrinkFilters.class),
+                SET_DRINK_FILTERS_REQUEST));
         Button fun_btn = findViewById(R.id.funSelect);
-        fun_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(new Intent(MainActivity.this, FunFilters.class),
-                        SET_FUN_FILTERS_REQUEST);
-            }
-        });
+        fun_btn.setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, FunFilters.class),
+                SET_FUN_FILTERS_REQUEST));
 
         //hamburger drawer code
         mDrawerList = findViewById(R.id.navList);//make the drawer
@@ -89,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         addDrawerItems();//populate the drawer
         setupDrawer();//setup the title changing when drawer is open/close
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//enables the drawer button
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);//enables the drawer button
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);//sets the icon
         getSupportActionBar().setHomeButtonEnabled(true);//same
 
@@ -99,35 +88,27 @@ public class MainActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(MainActivity.this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_REQUEST_FINE_LOCATION );
-
-                // MY_PERMISSIONS_REQUEST_FINE_LOCATION is an
-                // app-defined int constant. The callback method gets the
-                // result of the request
         }
         else {
-            // Permission has already been granted
             //Gets GPS latitude and longitude location
             getLatLong();
         }
         Button yelp_btn = findViewById(R.id.yelpSelect);
         double finalLatitude = latitude;
         double finalLongitude = longitude;
-        yelp_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, pageResult.class);
-                Bundle b = new Bundle();
-                b.putString("foodChoice", foodChoice.getText().toString());
-                b.putString("drinkChoice", drinkChoice.getText().toString());
-                b.putString("funChoice", funChoice.getText().toString());
-                b.putDouble("lat", finalLatitude);
-                b.putDouble("long", finalLongitude);
-                intent.putExtras(b); //Put your id to your next Intent
-                startActivity(intent);
-            }
+        yelp_btn.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, pageResult.class);
+            Bundle b = new Bundle();
+            b.putString("foodChoice", foodChoice.getText().toString());
+            b.putString("drinkChoice", drinkChoice.getText().toString());
+            b.putString("funChoice", funChoice.getText().toString());
+            b.putDouble("lat", finalLatitude);
+            b.putDouble("long", finalLongitude);
+            intent.putExtras(b); //Put your id to your next Intent
+            startActivity(intent);
         });
     }
-
+    //gets lat and long from Location data
     private void getLatLong() {
         LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         @SuppressLint("MissingPermission") Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -196,12 +177,8 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, osArray);
         mDrawerList.setAdapter(mAdapter);
 
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {//adds tap listener
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "Page NYI!", Toast.LENGTH_SHORT).show();
-            }
-        });
+        //adds tap listener
+        mDrawerList.setOnItemClickListener((parent, view, position, id) -> Toast.makeText(MainActivity.this, "Page NYI!", Toast.LENGTH_SHORT).show());
     }
 
     //changes the title bar based on drawer status
@@ -211,14 +188,14 @@ public class MainActivity extends AppCompatActivity {
             //called when a drawer has settled in a completely open state
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle("Hamburger Drawer");
+                Objects.requireNonNull(getSupportActionBar()).setTitle("Hamburger Drawer");
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
             //Called when a drawer has settled in a completely closed state
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                getSupportActionBar().setTitle(mActivityTitle);
+                Objects.requireNonNull(getSupportActionBar()).setTitle(mActivityTitle);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
@@ -240,22 +217,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_FINE_LOCATION : {
-                // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     getLatLong();
                 } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
                     Toast.makeText(MainActivity.this, "Location usage required", Toast.LENGTH_SHORT).show();
                 }
             }
-
-            // other 'case' lines to check for other
-            // permissions this app might request.
         }
     }
 }
