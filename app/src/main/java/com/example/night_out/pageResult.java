@@ -105,11 +105,16 @@ public class pageResult extends AppCompatActivity {
             try {
                 Response response = client.newCall(requests[0]).execute();
                 assert response.body() != null;
-                JSONObject jsonObject = new JSONObject(response.body().string().trim());       // parser
-                JSONArray myResponse = (JSONArray)jsonObject.get("businesses");
-                Random rand = new Random();
-                int objNum = rand.nextInt(myResponse.length());
-                return (myResponse.getJSONObject(objNum));
+                JSONObject jsonObject = new JSONObject(response.body().string().trim());
+                if(jsonObject.getInt("total") == 0){ //if no results found
+                    return null;
+                }
+                else { //results found
+                    JSONArray myResponse = (JSONArray) jsonObject.get("businesses");
+                    Random rand = new Random();
+                    int objNum = rand.nextInt(myResponse.length());
+                    return (myResponse.getJSONObject(objNum));
+                }
             } catch (IOException e) {
                 e.printStackTrace();
                 return null;
@@ -122,40 +127,55 @@ public class pageResult extends AppCompatActivity {
         protected void onPostExecute(JSONObject result){
             TextView oneName = findViewById(R.id.onename);
             TextView oneAdd = findViewById(R.id.oneAdd);
-            TextView oneCat = findViewById(R.id.oneLatLong);
+            TextView oneCoords = findViewById(R.id.oneLatLong);
             TextView twoName = findViewById(R.id.twoname);
             TextView twoAdd = findViewById(R.id.twoAdd);
-            TextView twoCat = findViewById(R.id.twoLatLong);
+            TextView twoCoords = findViewById(R.id.twoLatLong);
             TextView threeName = findViewById(R.id.threename);
             TextView threeAdd = findViewById(R.id.threeAdd);
-            TextView threeCat = findViewById(R.id.threeLatLong);
+            TextView threeCoords = findViewById(R.id.threeLatLong);
             try {
-                if(result.getString("name")!=null) {
+                if (result == null){ //if no results found
+                    if (oneName.getText().toString().equals("Loading")) {
+                        oneName.setText(getString(R.string.no_results_found));
+                        oneAdd.setText(getString(R.string.no_results_found));
+                        oneCoords.setText(getString(R.string.no_results_found));
+                    } else if (twoName.getText().toString().equals("Loading")) {
+                        twoName.setText(getString(R.string.no_results_found));
+                        twoAdd.setText(getString(R.string.no_results_found));
+                        twoCoords.setText(getString(R.string.no_results_found));
+                    } else if (threeName.getText().toString().equals("Loading")) {
+                        threeName.setText(getString(R.string.no_results_found));
+                        threeAdd.setText(getString(R.string.no_results_found));
+                        threeCoords.setText(getString(R.string.no_results_found));
+                    }
+                }
+                else { //print results, finding which section hasnt already been taken first
                     if (oneName.getText().toString().equals("Loading")) {
                         oneName.setText(result.getString("name"));
                         oneAdd.setText(buildAdd(result));
-                        oneCat.setText(buildLatLong(result));
+                        oneCoords.setText(buildLatLong(result));
                     } else if (twoName.getText().toString().equals("Loading")) {
                         twoName.setText(result.getString("name"));
                         twoAdd.setText(buildAdd(result));
-                        twoCat.setText(buildLatLong(result));
+                        twoCoords.setText(buildLatLong(result));
                     } else if (threeName.getText().toString().equals("Loading")) {
                         threeName.setText(result.getString("name"));
                         threeAdd.setText(buildAdd(result));
-                        threeCat.setText(buildLatLong(result));
+                        threeCoords.setText(buildLatLong(result));
                     }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-
+        //builds address string given result object
         private String buildAdd(JSONObject result) throws JSONException {
             String add = "";
             JSONObject locationData = result.getJSONObject("location");
             return add + locationData.getString("address1") + " " + locationData.getString("city") + ", " + locationData.getString("state");
         }
-
+        //builds lat,long string given result object
         private String buildLatLong(JSONObject result) throws JSONException {
             String coordinates = "";
             JSONObject locationData = result.getJSONObject("coordinates");

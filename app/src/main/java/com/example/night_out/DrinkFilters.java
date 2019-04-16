@@ -11,6 +11,7 @@ public class DrinkFilters extends AppCompatActivity {
     private String costStr = "All";
     private String distStr = "All";
     private String typeStr = "All";
+    //possible categories to be displayed on buttons
     public String[] drinkTypes = {"bars", "cocktailbars", "hookah_bars", "sportsbars", "wine_bars",
                                   "pianobars", "cigarbars", "divebars", "irish_pubs", "beerbar",
                                   "barcrawl", "lounges", "whiskeybars", "bars"};
@@ -53,6 +54,7 @@ public class DrinkFilters extends AppCompatActivity {
         button_random.setOnClickListener(v -> randomizeButtons(rand, button_choice1, button_choice2));
     }
 
+    //randomize button values if user dislikes choices
     private void randomizeButtons(Random rand, Button button_choice1, Button button_choice2) {
         int objNum1 = rand.nextInt(drinkTypes.length);
         int objNum2 = rand.nextInt(drinkTypes.length);

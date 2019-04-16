@@ -11,9 +11,12 @@ public class FunFilters extends AppCompatActivity {
     private String costStr = "All";
     private String distStr = "All";
     private String typeStr = "All";
+    //possible categories to be displayed on buttons
     public String[] funTypes = {"karaoke", "danceclubs", "poolhalls", "comedyclubs", "amusementparks",
                                 "bowling", "climbing", "discgolf", "escapegames", "gokarts", "lasertag",
-                                "parks", "casinos", "cabaret", "movietheaters", "arcades"};
+                                "parks", "casinos", "cabaret", "movietheaters", "arcades", "battingcages",
+                                "gun_ranges", "horsebackriding", "parks", "zoos", "museums", "artmuseums",
+                                "observatories", "racetracks", "spas", "historicaltours", "tours", "arttours"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +54,7 @@ public class FunFilters extends AppCompatActivity {
         button_random.setOnClickListener(v -> randomizeButtons(rand, button_choice1, button_choice2));
     }
 
+    //randomize button values if user dislikes choices
     private void randomizeButtons(Random rand, Button button_choice1, Button button_choice2) {
         int objNum1 = rand.nextInt(funTypes.length);
         int objNum2 = rand.nextInt(funTypes.length);

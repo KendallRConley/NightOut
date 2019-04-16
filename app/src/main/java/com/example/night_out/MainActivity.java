@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(MainActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
+                //asks for permission from user
                 ActivityCompat.requestPermissions(MainActivity.this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_REQUEST_FINE_LOCATION );
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             b.putString("funChoice", funChoice.getText().toString());
             b.putDouble("lat", finalLatitude);
             b.putDouble("long", finalLongitude);
-            intent.putExtras(b); //Put your id to your next Intent
+            intent.putExtras(b); //bundles variables to send to result
             startActivity(intent);
         });
     }
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         address_text = findViewById(R.id.address_text);
         address_text.setText(loc);
     }
-
+    //sets textView choices based upon return values from filters
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -215,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //check if permission has been granted by user
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String permissions[], @NonNull int[] grantResults) {
@@ -222,9 +224,9 @@ public class MainActivity extends AppCompatActivity {
             case MY_PERMISSIONS_REQUEST_FINE_LOCATION : {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    getLatLong();
+                    getLatLong(); //grabs lat long
                 } else {
-                    Toast.makeText(MainActivity.this, "Location usage required", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Location usage required", Toast.LENGTH_SHORT).show(); //app cannot function without location, tell user that
                 }
             }
         }

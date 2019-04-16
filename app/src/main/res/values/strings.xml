@@ -19,4 +19,5 @@
     <string name="wait_for_async">Loading</string>
     <string name="button_name_apply">Apply</string>
     <string name="button_randomize">Randomize</string>
+    <string name="no_results_found">No results found</string>
 </resources>

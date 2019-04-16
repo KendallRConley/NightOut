@@ -11,7 +11,7 @@ public class FoodFilters extends AppCompatActivity {
     private String costStr = "All";
     private String distStr = "All";
     private String typeStr = "All";
-
+    //possible categories to be displayed on buttons
     public String[] restTypes = {"burgers", "mexican", "seafood", "italian", "french",
                                   "german", "southern", "steak", "pizza", "mediterranean",
                                   "japanese", "chinese", "greek", "soup", "soulfood", "chicken_wings",
@@ -57,6 +57,7 @@ public class FoodFilters extends AppCompatActivity {
         });
     }
 
+    //randomize button values if user dislikes choices
     private void randomizeButtons(Random rand, Button button_choice1, Button button_choice2) {
         int objNum1 = rand.nextInt(restTypes.length);
         int objNum2 = rand.nextInt(restTypes.length);
