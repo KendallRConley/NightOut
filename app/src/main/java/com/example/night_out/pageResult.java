@@ -54,7 +54,7 @@ public class pageResult extends AppCompatActivity {
         String term = choices[2].substring(1);
 
         return new Request.Builder()
-                .url("https://api.yelp.com/v3/businesses/search?categories=" + term + "&price=" + price + "&latitude=" + lat + "&longitude=" + lon + "&radius=" + radius)
+                .url("https://api.yelp.com/v3/businesses/search?open_now=true&categories=" + term + "&price=" + price + "&latitude=" + lat + "&longitude=" + lon + "&radius=" + radius)
                 .get()
                 .addHeader("Authorization", "Bearer C7UvUlP5eSCdaKyC0T5mjE8EXnhPm4lu_lGFDFAI_vzIzUkNNbqyl6pnaZMYFcU4p2E-93JFKP20URmNfBbc12sKJ-lugBGY6FxyCRFUFjMuBFmc9n3gHCdYq4KSXHYx")
                 .addHeader("Content-Type", "application/x-www-form-urlencoded")
