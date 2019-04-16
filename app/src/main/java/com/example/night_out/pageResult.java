@@ -120,22 +120,46 @@ public class pageResult extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(JSONObject result){
-            TextView onename = findViewById(R.id.onename);
-            TextView twoname = findViewById(R.id.twoname);
-            TextView threename = findViewById(R.id.threename);
+            TextView oneName = findViewById(R.id.onename);
+            TextView oneAdd = findViewById(R.id.oneAdd);
+            TextView oneCat = findViewById(R.id.oneLatLong);
+            TextView twoName = findViewById(R.id.twoname);
+            TextView twoAdd = findViewById(R.id.twoAdd);
+            TextView twoCat = findViewById(R.id.twoLatLong);
+            TextView threeName = findViewById(R.id.threename);
+            TextView threeAdd = findViewById(R.id.threeAdd);
+            TextView threeCat = findViewById(R.id.threeLatLong);
             try {
                 if(result.getString("name")!=null) {
-                    if (onename.getText().toString().equals("Loading")) {
-                        onename.setText(result.getString("name"));
-                    } else if (twoname.getText().toString().equals("Loading")) {
-                        twoname.setText(result.getString("name"));
-                    } else if (threename.getText().toString().equals("Loading")) {
-                        threename.setText(result.getString("name"));
+                    if (oneName.getText().toString().equals("Loading")) {
+                        oneName.setText(result.getString("name"));
+                        oneAdd.setText(buildAdd(result));
+                        oneCat.setText(buildLatLong(result));
+                    } else if (twoName.getText().toString().equals("Loading")) {
+                        twoName.setText(result.getString("name"));
+                        twoAdd.setText(buildAdd(result));
+                        twoCat.setText(buildLatLong(result));
+                    } else if (threeName.getText().toString().equals("Loading")) {
+                        threeName.setText(result.getString("name"));
+                        threeAdd.setText(buildAdd(result));
+                        threeCat.setText(buildLatLong(result));
                     }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+
+        private String buildAdd(JSONObject result) throws JSONException {
+            String add = "";
+            JSONObject locationData = result.getJSONObject("location");
+            return add + locationData.getString("address1") + " " + locationData.getString("city") + ", " + locationData.getString("state");
+        }
+
+        private String buildLatLong(JSONObject result) throws JSONException {
+            String coordinates = "";
+            JSONObject locationData = result.getJSONObject("coordinates");
+            return coordinates + locationData.getString("latitude") + ", " + locationData.getString("longitude");
         }
     }
 }
