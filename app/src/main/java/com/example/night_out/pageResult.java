@@ -53,7 +53,19 @@ public class pageResult extends AppCompatActivity {
         int radius = getDistance(choices[1].substring(1));
         String term = choices[2].substring(1);
 
-        return new Request.Builder()
+        if (price == null){
+            return new Request.Builder()
+                    .url("https://api.yelp.com/v3/businesses/search?open_now=true&categories=" + term + "&latitude=" + lat + "&longitude=" + lon + "&radius=" + radius)
+                    .get()
+                    .addHeader("Authorization", "Bearer C7UvUlP5eSCdaKyC0T5mjE8EXnhPm4lu_lGFDFAI_vzIzUkNNbqyl6pnaZMYFcU4p2E-93JFKP20URmNfBbc12sKJ-lugBGY6FxyCRFUFjMuBFmc9n3gHCdYq4KSXHYx")
+                    .addHeader("Content-Type", "application/x-www-form-urlencoded")
+                    .addHeader("cache-control", "no-cache")
+                    .addHeader("Postman-Token", "fb69fb24-4846-4a93-9e4e-1199fa4693ff")
+                    .build();
+        }
+
+        else{
+            return new Request.Builder()
                 .url("https://api.yelp.com/v3/businesses/search?open_now=true&categories=" + term + "&price=" + price + "&latitude=" + lat + "&longitude=" + lon + "&radius=" + radius)
                 .get()
                 .addHeader("Authorization", "Bearer C7UvUlP5eSCdaKyC0T5mjE8EXnhPm4lu_lGFDFAI_vzIzUkNNbqyl6pnaZMYFcU4p2E-93JFKP20URmNfBbc12sKJ-lugBGY6FxyCRFUFjMuBFmc9n3gHCdYq4KSXHYx")
@@ -61,6 +73,7 @@ public class pageResult extends AppCompatActivity {
                 .addHeader("cache-control", "no-cache")
                 .addHeader("Postman-Token", "fb69fb24-4846-4a93-9e4e-1199fa4693ff")
                 .build();
+        }
     }
 
     public String getPriceString(String price){
@@ -76,7 +89,7 @@ public class pageResult extends AppCompatActivity {
                 yelp_price = "3";
                 break;
             default:
-                yelp_price = "1,2,3";
+                yelp_price = null;
                 break;
         }
         return yelp_price;
