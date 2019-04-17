@@ -36,6 +36,7 @@
         <activity
             android:name=".NightOutMap"
             android:parentActivityName=".MainActivity" />
+        <activity android:name=".pageResult"></activity>
         <activity
             android:name=".FunFilters"
             android:parentActivityName=".MainActivity" />
