@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int SET_FOOD_FILTERS_REQUEST = 11;
     public static final int SET_DRINK_FILTERS_REQUEST = 12;
     public static final int SET_FUN_FILTERS_REQUEST = 13;
+    public double latitude, longitude;
 
     TextView address_text;
     TextView foodChoice, drinkChoice, funChoice;
@@ -92,6 +93,31 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             //Gets GPS latitude and longitude location
+            LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+            if (location != null) {
+                longitude = location.getLongitude();
+                latitude = location.getLatitude();
+            } else {
+                latitude = 38.0406;
+                longitude = -84.5037;
+            }
+
+            String loc = getAddress(latitude, longitude);
+            address_text = findViewById(R.id.address_text);
+            address_text.setText(loc);
+        }
+
+        Button map_button = findViewById(R.id.show_Map);
+        map_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mapIntent = new Intent(MainActivity.this, NightOutMap.class);
+                mapIntent.putExtra("latString", latitude);
+                mapIntent.putExtra("lonString", longitude);
+                startActivity(mapIntent);
+            }
             getLatLong();
         }
         Button yelp_btn = findViewById(R.id.yelpSelect);
