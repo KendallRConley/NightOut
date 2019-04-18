@@ -121,13 +121,13 @@ public class pageResult extends AppCompatActivity {
         int distance;
         switch (dist){
             case "Close":
-                distance = 8050; //about 5 miles
+                distance = 5000; //about 3 miles
                 break;
             case "Mid":
-                distance = 25000; //about 15 miles
+                distance = 12500; //about 7.5 miles
                 break;
             default:
-                distance = 40000; //about 25 miles. Yelp's max radius
+                distance = 25000; //about 15.5 miles.
         }
         return distance;
     }
