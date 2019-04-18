@@ -1,8 +1,10 @@
 package com.example.night_out;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -19,6 +21,12 @@ public class pageResult extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_result);
+        TextView oneName = findViewById(R.id.onename);
+        TextView oneCoords = findViewById(R.id.oneLatLong);
+        TextView twoName = findViewById(R.id.twoname);
+        TextView twoCoords = findViewById(R.id.twoLatLong);
+        TextView threeName = findViewById(R.id.threename);
+        TextView threeCoords = findViewById(R.id.threeLatLong);
 
         Bundle b = getIntent().getExtras();
         if(b!= null && (!Objects.requireNonNull(b.getString("foodChoice")).equals("") ||
@@ -45,6 +53,20 @@ public class pageResult extends AppCompatActivity {
         else{
             finish();
         }
+
+        Button map_btn = findViewById(R.id.goToMap);
+        map_btn.setOnClickListener(v -> {
+            Intent intent = new Intent(pageResult.this, resultMap.class);
+            Bundle newB = new Bundle();
+            newB.putString("oneName", oneName.getText().toString());
+            newB.putString("twoName", twoName.getText().toString());
+            newB.putString("threeName", threeName.getText().toString());
+            newB.putString("oneCoords", oneCoords.getText().toString());
+            newB.putString("twoCoords", twoCoords.getText().toString());
+            newB.putString("threeCoords", threeCoords.getText().toString());
+            intent.putExtras(newB); //bundles variables to send to result
+            startActivity(intent);
+        });
     }
 
     public Request buildRequest(double lat, double lon, String item){
