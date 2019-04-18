@@ -21,11 +21,13 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Yelp Query Test!"
-            app:layout_constraintBottom_toTopOf="@+id/address_text"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Go!"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/show_Map"
+            app:layout_constraintHorizontal_bias="0.371"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintVertical_bias="0.052" />
 
         <Button
             android:id="@+id/foodSelect"

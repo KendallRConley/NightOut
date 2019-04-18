@@ -26,7 +26,6 @@ import java.util.Objects;
 
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -46,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private String mActivityTitle;
-    public double latitude;
-    public double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,8 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 mapIntent.putExtra("lonString", longitude);
                 startActivity(mapIntent);
             }
-            getLatLong();
-        }
+        });
         Button yelp_btn = findViewById(R.id.yelpSelect);
         double finalLatitude = latitude;
         double finalLongitude = longitude;
