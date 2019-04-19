@@ -58,6 +58,9 @@ public class pageResult extends AppCompatActivity {
         map_btn.setOnClickListener(v -> {
             Intent intent = new Intent(pageResult.this, resultMap.class);
             Bundle newB = new Bundle();
+            assert b != null;
+            newB.putDouble("lat", b.getDouble("lat"));
+            newB.putDouble("long", b.getDouble("long"));
             newB.putString("oneName", oneName.getText().toString());
             newB.putString("twoName", twoName.getText().toString());
             newB.putString("threeName", threeName.getText().toString());
