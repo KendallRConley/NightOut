@@ -28,6 +28,9 @@ public class pageResult extends AppCompatActivity {
         TextView threeName = findViewById(R.id.threename);
         TextView threeCoords = findViewById(R.id.threeLatLong);
 
+        Button reroll = findViewById(R.id.reroll);
+        reroll.setOnClickListener(v -> recreate());
+
         Bundle b = getIntent().getExtras();
         if(b!= null && (!Objects.requireNonNull(b.getString("foodChoice")).equals("") ||
                 !Objects.requireNonNull(b.getString("drinkChoice")).equals("") ||
