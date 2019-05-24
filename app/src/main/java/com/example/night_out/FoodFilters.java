@@ -16,7 +16,8 @@ public class FoodFilters extends AppCompatActivity {
                                   "german", "southern", "steak", "pizza", "mediterranean",
                                   "japanese", "chinese", "greek", "soup", "soulfood", "chicken_wings",
                                   "tradamerican", "breakfast_brunch", "buffets", "irish", "salad",
-                                  "bbq", "cajun", "diners", "gastropubs", "indpak", "sushi"};
+                                  "bbq", "cajun", "diners", "gastropubs", "indpak", "sushi", "asianfusion",
+                                  "cheesesteaks", "kebab"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
