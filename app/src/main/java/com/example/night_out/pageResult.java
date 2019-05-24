@@ -124,13 +124,13 @@ public class pageResult extends AppCompatActivity {
         int distance;
         switch (dist){
             case "Close":
-                distance = 5000; //about 3 miles
+                distance = 2500; //about 1.5 miles
                 break;
             case "Mid":
                 distance = 12500; //about 7.5 miles
                 break;
             default:
-                distance = 25000; //about 15.5 miles.
+                distance = 40000; //about 25 miles.
         }
         return distance;
     }
