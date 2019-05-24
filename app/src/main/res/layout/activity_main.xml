@@ -23,8 +23,7 @@
             android:layout_marginBottom="8dp"
             android:text="Go!"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/show_Map"
-            app:layout_constraintHorizontal_bias="0.371"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider"
             app:layout_constraintVertical_bias="0.052" />
@@ -136,22 +135,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-        <Button
-            android:id="@+id/show_Map"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="301dp"
-            android:layout_marginLeft="301dp"
-            android:layout_marginTop="389dp"
-            android:layout_marginEnd="23dp"
-            android:layout_marginRight="23dp"
-            android:layout_marginBottom="294dp"
-            android:text="Show Map"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

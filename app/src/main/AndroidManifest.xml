@@ -29,14 +29,8 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
-        <activity
-            android:name=".UserMapLocation"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".NightOutMap"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".pageResult" />
+        <activity android:name=".pageResult"
+                  android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".FunFilters"
             android:parentActivityName=".MainActivity" />

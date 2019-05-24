@@ -106,16 +106,6 @@ public class MainActivity extends AppCompatActivity {
             address_text.setText(loc);
         }
 
-        Button map_button = findViewById(R.id.show_Map);
-        map_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mapIntent = new Intent(MainActivity.this, NightOutMap.class);
-                mapIntent.putExtra("latString", latitude);
-                mapIntent.putExtra("lonString", longitude);
-                startActivity(mapIntent);
-            }
-        });
         Button yelp_btn = findViewById(R.id.yelpSelect);
         double finalLatitude = latitude;
         double finalLongitude = longitude;
@@ -241,15 +231,13 @@ public class MainActivity extends AppCompatActivity {
     //check if permission has been granted by user
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[], @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_FINE_LOCATION : {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    getLatLong(); //grabs lat long
-                } else {
-                    Toast.makeText(MainActivity.this, "Location usage required", Toast.LENGTH_SHORT).show(); //app cannot function without location, tell user that
-                }
+                                           @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == MY_PERMISSIONS_REQUEST_FINE_LOCATION) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getLatLong(); //grabs lat long
+            } else {
+                Toast.makeText(MainActivity.this, "Location usage required", Toast.LENGTH_SHORT).show(); //app cannot function without location, tell user that
             }
         }
     }
