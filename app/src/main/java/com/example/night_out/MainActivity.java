@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         Button fun_btn = findViewById(R.id.funSelect);
         fun_btn.setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, FunFilters.class),
                 SET_FUN_FILTERS_REQUEST));
-
         //hamburger drawer code
         mDrawerList = findViewById(R.id.navList);//make the drawer
         mDrawerLayout = findViewById(R.id.drawer_layout);//store the layout
@@ -120,6 +119,13 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtras(b); //bundles variables to send to result
             startActivity(intent);
         });
+
+        Button clear_food = findViewById(R.id.clear_food);
+        clear_food.setOnClickListener(v -> foodChoice.setText(""));
+        Button clear_drink= findViewById(R.id.clear_drink);
+        clear_drink.setOnClickListener(v -> drinkChoice.setText(""));
+        Button clear_fun = findViewById(R.id.clear_fun);
+        clear_fun.setOnClickListener(v -> funChoice.setText(""));
     }
     //gets lat and long from Location data
     private void getLatLong() {

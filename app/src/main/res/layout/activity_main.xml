@@ -21,9 +21,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Go!"
+            android:text="@string/go"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.54"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider"
             app:layout_constraintVertical_bias="0.052" />
@@ -73,7 +74,7 @@
             android:layout_marginRight="8dp"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="@+id/foodSelect"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/clear_food"
             app:layout_constraintStart_toEndOf="@+id/foodSelect"
             app:layout_constraintTop_toTopOf="@+id/foodSelect" />
 
@@ -87,7 +88,7 @@
             android:layout_marginRight="8dp"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="@+id/drinkSelect"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/clear_drink"
             app:layout_constraintStart_toEndOf="@+id/drinkSelect"
             app:layout_constraintTop_toTopOf="@+id/drinkSelect" />
 
@@ -101,7 +102,7 @@
             android:layout_marginRight="8dp"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="@+id/funSelect"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/clear_fun"
             app:layout_constraintStart_toEndOf="@+id/funSelect"
             app:layout_constraintTop_toTopOf="@+id/funSelect" />
 
@@ -133,8 +134,52 @@
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.531"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintVertical_bias="0.49" />
+
+        <Button
+            android:id="@+id/clear_drink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/clear"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.224" />
+
+        <Button
+            android:id="@+id/clear_food"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/clear"
+            app:layout_constraintBottom_toTopOf="@+id/clear_drink"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.258" />
+
+        <Button
+            android:id="@+id/clear_fun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/clear"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clear_drink"
+            app:layout_constraintVertical_bias="0.153" />
 
     </android.support.constraint.ConstraintLayout>
 
