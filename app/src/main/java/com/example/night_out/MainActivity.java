@@ -88,21 +88,7 @@ public class MainActivity extends AppCompatActivity {
                         MY_PERMISSIONS_REQUEST_FINE_LOCATION );
         }
         else {
-            //Gets GPS latitude and longitude location
-            LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-            if (location != null) {
-                longitude = location.getLongitude();
-                latitude = location.getLatitude();
-            } else {
-                latitude = 38.0406;
-                longitude = -84.5037;
-            }
-
-            String loc = getAddress(latitude, longitude);
-            address_text = findViewById(R.id.address_text);
-            address_text.setText(loc);
+            getLatLong();
         }
 
         Button yelp_btn = findViewById(R.id.yelpSelect);
